@@ -35,13 +35,16 @@ def gradient_descent(X, eps=1e-16, max_iter=1000):
         delta_k1 = delta_k - lambda_k * gradient
 
         if np.linalg.norm(delta_k1 - delta_k) / np.linalg.norm(delta_k) < eps:
+            print('\n\n\tКоличество итераций {}'.format(_))
             return delta_k1
+
+        print('Итерация {}: ({}, {})'.format(_, *delta_k))
 
         delta_k = delta_k1
     return delta_k
 
 
 X = np.array([-1, -1], dtype=float)
-print(gradient_descent(X))
+print('\tРешение 1: ({}, {})'.format(*gradient_descent(X)))
 X = np.array([1, 1], dtype=float)
-print(gradient_descent(X))
+print('\tРешение 2: ({}, {})'.format(*gradient_descent(X)))
