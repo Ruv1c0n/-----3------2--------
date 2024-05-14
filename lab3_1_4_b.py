@@ -127,37 +127,86 @@ aproximation.align["N"] = 'c'
 print(aproximation)
 
 # Вывод графика
-fig, axs = plt.subplots(1, 6)
+# fig, axs = plt.subplots(1, 4)
+# fig.canvas.manager.set_window_title('Aproximation')
+# fig.set_figwidth(22)
+# fig.set_figheight(7)
+
+# axs[0].set_xlabel("Точка t")
+# axs[0].set_ylabel("Значение функции F")
+# axs[0].errorbar(
+#     gauss_w_3_nodes[:, 1],
+#     gauss_w_3_nodes[:, 0],
+#     label='Gauss with 3 nodes'
+# )
+# axs[0].errorbar(
+#     gauss_w_4_nodes[:, 1],
+#     gauss_w_4_nodes[:, 0],
+#     label='Gauss with 4 nodes'
+# )
+# axs[0].errorbar(
+#     double_steps_array[:, 1],
+#     double_steps_array[:, 0],
+#     label='Doubling method'
+# )
+# axs[0].legend(loc='lower right')
+
+# axs[1].axis('off')
+# axs[3].axis('off')
+
+# aproximation_table_data = []
+# for i in range(len(gauss_w_3_nodes)):
+#     aproximation_table_data.append(
+#         [gauss_w_3_nodes[i][0],
+#          gauss_w_4_nodes[i][0],
+#          double_steps_array[i][0],
+#          N_iteration[i]]
+#     )
+# aproximation_table = axs[2].table(
+#     cellText=aproximation_table_data,
+#     colLabels=[
+#         "Gauss with 3 nodes",
+#         "Gauss with 4 nodes",
+#         "Doubling method",
+#         "N"
+#     ],
+#     rowLoc='center',
+#     colLoc='center',
+#     colColours=["palegreen"] * 4,
+#     loc='center'
+# )
+# aproximation_table.set_fontsize(30)
+# aproximation_table.scale(3.5, 1.5)
+# axs[2].axis('off')
+
+# plt.show()
+
+
+fig, ax = plt.subplots()
 fig.canvas.manager.set_window_title('Aproximation')
-fig.set_figwidth(22)
-fig.set_figheight(7)
+ax.set_xlabel("Точка t")
+ax.set_ylabel("Значение функции F")
+ax.errorbar(
+    gauss_w_3_nodes[:, 1],
+    gauss_w_3_nodes[:, 0],
+    label='Gauss with 3 nodes'
+)
+ax.errorbar(
+    gauss_w_4_nodes[:, 1],
+    gauss_w_4_nodes[:, 0],
+    label='Gauss with 4 nodes'
+)
+ax.errorbar(
+    double_steps_array[:, 1],
+    double_steps_array[:, 0],
+    label='Doubling method'
+)
+ax.legend(loc='lower right')
 
-axs[0].set_title("Gauss with 3 nodes")
-axs[0].set_xlabel("Точка t")
-axs[0].set_ylabel("Значение функции F")
-axs[0].plot(gauss_w_3_nodes[:, 1], gauss_w_3_nodes[:, 0])
-
-
-axs[1].set_title("Gauss with 4 nodes")
-axs[1].set_xlabel("Точка t")
-axs[1].set_ylabel("Значение функции F")
-axs[1].plot(gauss_w_4_nodes[:, 1], gauss_w_4_nodes[:, 0])
-
-
-axs[2].set_title("Doubling method")
-axs[2].set_xlabel("Точка t")
-axs[2].set_ylabel("Значение функции F")
-axs[2].plot(double_steps_array[:, 1], double_steps_array[:, 0])
-
-axs[3].axis('off')
-axs[5].axis('off')
-
-aproximation_table_data = [[
-    "Gauss with 3 nodes",
-    "Gauss with 4 nodes",
-    "Doubling method",
-    "N"
-]]
+fig3 = plt.figure(figsize=(10, 10))
+ax3 = fig3.add_subplot()
+fig3.canvas.manager.set_window_title('Aproximation')
+aproximation_table_data = []
 for i in range(len(gauss_w_3_nodes)):
     aproximation_table_data.append(
         [gauss_w_3_nodes[i][0],
@@ -165,12 +214,22 @@ for i in range(len(gauss_w_3_nodes)):
          double_steps_array[i][0],
          N_iteration[i]]
     )
-aproximation_table = axs[4].table(
+aproximation_table = ax3.table(
     cellText=aproximation_table_data,
+    colLabels=[
+        "Gauss with 3 nodes",
+        "Gauss with 4 nodes",
+        "Doubling method",
+        "N"
+    ],
+    rowLoc='center',
+    colLoc='center',
+    colColours=["palegreen"] * 4,
     loc='center'
 )
+aproximation_table.set_fontsize(50)
 aproximation_table.set_fontsize(30)
-aproximation_table.scale(3.5, 1.5)
-axs[4].axis('off')
+aproximation_table.scale(1, 2)
+ax3.axis('off')
 
 plt.show()
