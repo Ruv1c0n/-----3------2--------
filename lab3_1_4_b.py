@@ -22,10 +22,9 @@ def f(x, t):
 
 '''Квадратурная формула трапеций'''
 
-
 def Trapezoid(t, N):
     h = (B - A) / N
-    result = (A + B) / 2
+    result = (f(A, t) + f(B, t)) / 2
     for i in range(1, N):
         x_i = A + i * h
         result += f(x_i, t)
